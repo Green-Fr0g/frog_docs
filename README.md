@@ -71,7 +71,7 @@ site/                   # 构建产物（不入库）
 | isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | `exclude_patterns` 排除 `source/api` | 见上方 API 策略；`autosummary` 无法导入不存在的 `isaaclab` 包 |
 | isaaclab | `docs_zh_CN/conf.py` | `language = "en"` → `"zh_CN"` | 否则中文站导出英文搜索索引 |
 | protomotions | `docs_zh_CN/source/conf.py` | `language = "en"` → `"zh_CN"` | 同上 |
-需要切换策略时，改对应 `conf.py` 的 `exclude_patterns` 即可，源文件无需删除。
+| sonic、isaaclab、protomotions | 各自 `conf.py` 的 `html_js_files`；新增 `_static/js/color_mode_cycle.js`；sonic/isaaclab 另在 `custom.css` 隐藏下拉菜单 | 主题按钮由「下拉选择」改为「点击循环」：light → dark → auto | 统一全站交互，与 mjlab 保持一致（mjlab 上游自带该定制，此处把同一脚本复制到其余三个项目） |
 
 ## 添加新项目
 

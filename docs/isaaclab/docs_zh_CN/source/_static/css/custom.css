@@ -110,3 +110,12 @@ a {
     text-align: center;
     vertical-align: middle;
 }
+
+/* Click-to-cycle color mode: hide the theme dropdown UI. */
+.theme-switch-container > .dropdown-menu {
+    display: none !important;
+}
+
+.theme-switch-button.dropdown-toggle::after {
+    display: none !important;
+}

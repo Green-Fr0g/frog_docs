@@ -265,6 +265,7 @@ master_doc = "index"
 
 html_theme = "nvidia_sphinx_theme"
 html_static_path = ["_static"]
+html_js_files = ["js/color_mode_cycle.js"]
 
 # NVIDIA theme options
 html_theme_options = {

@@ -100,3 +100,12 @@ footer.bd-footer {
     border-top: 1px solid var(--pst-color-border);
     padding-top: 1rem;
 }
+
+/* Click-to-cycle color mode: hide the theme dropdown UI. */
+.theme-switch-container > .dropdown-menu {
+    display: none !important;
+}
+
+.theme-switch-button.dropdown-toggle::after {
+    display: none !important;
+}
