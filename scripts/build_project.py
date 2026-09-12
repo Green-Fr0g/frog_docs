@@ -15,6 +15,20 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = ROOT / "docs"
 SITE_ROOT = ROOT / "site"
 
+# Media copied verbatim by html_static_path is pruned when nothing links to it.
+MEDIA_SUFFIXES = {
+  ".mp4",
+  ".webm",
+  ".mov",
+  ".m4v",
+  ".gif",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".svg",
+}
+MIN_PRUNE_BYTES = 1024 * 1024
+
 
 def load_meta(project_id: str) -> dict:
   meta_path = DOCS_ROOT / project_id / "meta.yaml"
@@ -26,6 +40,43 @@ def load_meta(project_id: str) -> dict:
   if "languages" not in meta:
     raise ValueError(f"{meta_path} must define languages")
   return meta
+
+
+def prune_unreferenced_media(out_dir: Path) -> tuple[int, int]:
+  """Drop large media under `_static/` that no generated HTML/CSS file links to.
+
+  Sphinx copies the whole `html_static_path` tree into the output, but
+  `{video}` directives (sphinxcontrib.video) serve their media from `_images/`
+  instead. The `_static/` copies are then dead weight — on the sonic docs that
+  is ~250 MB per language, which blows past the 1 GB GitHub Pages artifact cap.
+  """
+  static_dir = out_dir / "_static"
+  if not static_dir.is_dir():
+    return 0, 0
+
+  chunks: list[str] = []
+  for path in out_dir.rglob("*"):
+    if path.suffix.lower() in {".html", ".css"} and path.is_file():
+      try:
+        chunks.append(path.read_text(encoding="utf-8", errors="ignore"))
+      except OSError:
+        continue
+  haystack = "".join(chunks)
+
+  removed = 0
+  freed = 0
+  for path in static_dir.rglob("*"):
+    if not path.is_file() or path.suffix.lower() not in MEDIA_SUFFIXES:
+      continue
+    size = path.stat().st_size
+    if size < MIN_PRUNE_BYTES:
+      continue
+    if path.relative_to(out_dir).as_posix() in haystack:
+      continue
+    path.unlink()
+    removed += 1
+    freed += size
+  return removed, freed
 
 
 def build_language(project_id: str, lang: str, lang_meta: dict, *, clean: bool) -> Path:
@@ -58,6 +109,14 @@ def build_language(project_id: str, lang: str, lang_meta: dict, *, clean: bool) 
   result = subprocess.run(cmd, cwd=ROOT)
   if result.returncode != 0:
     raise RuntimeError(f"Sphinx build failed for {project_id}/{lang} (exit {result.returncode})")
+
+  removed, freed = prune_unreferenced_media(out_dir)
+  if removed:
+    print(
+      f"[prune] {project_id}/{lang}: removed {removed} unreferenced media file(s), "
+      f"freed {freed / 1048576:.1f} MB",
+      flush=True,
+    )
   return out_dir
 
 
