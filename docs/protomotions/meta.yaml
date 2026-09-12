@@ -1,0 +1,13 @@
+id: protomotions
+title: ProtoMotions
+summary: GPU-accelerated physics simulation and learning framework for digital humans
+summary_zh: GPU 加速的物理仿真与学习框架，用于训练数字人与人形机器人
+upstream: https://github.com/NVlabs/ProtoMotions
+api_mode: upstream_link  # skip local autodoc API; link to official docs
+languages:
+  en:
+    root: docs/source
+    label: English
+  zh-CN:
+    root: docs_zh_CN/source
+    label: 中文

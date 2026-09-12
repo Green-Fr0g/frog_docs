@@ -1,0 +1,13 @@
+id: sonic
+title: SONIC (GR00T-WholeBodyControl)
+summary: NVIDIA whole-body control framework for humanoid robots
+summary_zh: NVIDIA 人形机器人全身控制框架
+upstream: https://github.com/NVlabs/GR00T-WholeBodyControl
+api_mode: upstream_link  # skip local autodoc API; link to official docs
+languages:
+  en:
+    root: docs/source
+    label: English
+  zh-CN:
+    root: docs_zh_CN/source
+    label: 中文

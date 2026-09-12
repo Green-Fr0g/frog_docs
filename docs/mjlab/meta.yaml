@@ -1,0 +1,13 @@
+id: mjlab
+title: mjlab
+summary: Lightweight GPU-accelerated robot learning framework built on MuJoCo Warp
+summary_zh: 基于 MuJoCo Warp 的轻量 GPU 加速机器人学习框架
+upstream: https://github.com/mujocolab/mjlab
+api_mode: upstream_link  # skip local autodoc API; link to official docs
+languages:
+  en:
+    root: docs
+    label: English
+  zh-CN:
+    root: docs_zh_CN
+    label: 中文
