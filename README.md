@@ -2,7 +2,7 @@
 
 多项目文档收集库：汇总各项目的原版与中文文档，构建为可本地预览、可部署的静态站点。
 
-当前已收录：**mjlab**、**sonic**（GR00T-WholeBodyControl）、**protomotions**（均为英文原版 + 中文译文）。
+当前已收录：**mjlab**、**sonic**（GR00T-WholeBodyControl）、**protomotions**、**isaaclab**（Isaac Lab）（均为英文原版 + 中文译文）。
 
 ## 快速开始
 
@@ -23,6 +23,8 @@ uv run python -m http.server -d site 8000
 | `/sonic/zh-CN/` | sonic 中文文档 |
 | `/protomotions/en/` | protomotions 英文文档 |
 | `/protomotions/zh-CN/` | protomotions 中文文档 |
+| `/isaaclab/en/` | Isaac Lab 英文文档 |
+| `/isaaclab/zh-CN/` | Isaac Lab 中文文档 |
 
 ## 仓库结构
 
@@ -42,6 +44,7 @@ site/                   # 构建产物（不入库）
 | 项目 | 英文 root | 中文 root |
 |------|-----------|-----------|
 | mjlab | `docs` | `docs_zh_CN` |
+| isaaclab | `docs` | `docs_zh_CN` |
 | sonic | `docs/source` | `docs_zh_CN/source` |
 | protomotions | `docs/source` | `docs_zh_CN/source` |
 
@@ -53,8 +56,21 @@ site/                   # 构建产物（不入库）
 |------|-------------|------|
 | mjlab | 跳过 | `conf.py` 的 `exclude_patterns` 排除 `source/api`，API 参考链接到[上游文档](https://mujocolab.github.io/mjlab/source/api/index.html) |
 | sonic | 发布 | 上游仅少量 API 页，可直接构建 |
-| protomotions | 发布 | 上游 `conf.py` 通过大量 `autodoc_mock_imports` 让 API 页可在无 GPU/仿真依赖下构建，正文来自 docstring |
+| isaaclab | 跳过 | 上游 `autosummary_generate = True` 会在 `builder-inited` 阶段 `import isaaclab`，无源码时直接中止构建；故 `exclude_patterns` 排除 `source/api`，API 参考见[上游文档](https://isaaclab.sh/docs/) |
 
+需要切换策略时，改对应 `conf.py` 的 `exclude_patterns` 即可，源文件无需删除。
+
+## 上游文档适配记录
+
+部分项目在收集库场景下需要少量调整（均已在源码中注明）：
+
+| 项目 | 文件 | 调整 | 原因 |
+|------|------|------|------|
+| isaaclab | `VERSION`（新增） | 从上游取当前版本号 `2.3.2` | `docs/conf.py` 会读取 `../VERSION`，但文档目录内不含该文件，缺失即构建失败 |
+| isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | 移除 `sphinx_multiversion` 扩展与 `smv_*` 配置，侧栏去掉版本切换器 | 该扩展要求多版本 git 标签，收集库只有一个 `main` 分支 |
+| isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | `exclude_patterns` 排除 `source/api` | 见上方 API 策略；`autosummary` 无法导入不存在的 `isaaclab` 包 |
+| isaaclab | `docs_zh_CN/conf.py` | `language = "en"` → `"zh_CN"` | 否则中文站导出英文搜索索引 |
+| protomotions | `docs_zh_CN/source/conf.py` | `language = "en"` → `"zh_CN"` | 同上 |
 需要切换策略时，改对应 `conf.py` 的 `exclude_patterns` 即可，源文件无需删除。
 
 ## 添加新项目

@@ -1,0 +1,13 @@
+id: isaaclab
+title: Isaac Lab
+summary: Unified GPU-accelerated robotics learning framework built on NVIDIA Isaac Sim
+summary_zh: 基于 NVIDIA Isaac Sim 的统一 GPU 加速机器人学习框架
+upstream: https://github.com/isaac-sim/IsaacLab
+api_mode: upstream_link  # skip local autodoc API; link to official docs
+languages:
+  en:
+    root: docs
+    label: English
+  zh-CN:
+    root: docs_zh_CN
+    label: 中文

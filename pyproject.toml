@@ -17,6 +17,7 @@ dependencies = [
   "pyyaml>=6.0",
   "sphinxcontrib-video>=0.3",
   "nvidia-sphinx-theme>=0.0.9.post1",
+  "sphinx-icon>=0.2.2",
 ]
 
 [project.optional-dependencies]
