@@ -1,0 +1,35 @@
+# Build outputs
+site/
+.cache/
+**/_build/
+**/_autosummary/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Tooling
+.uv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.vc.db
+*.vc.db-shm
+*.vc.db-wal
+*.vc.db.lock

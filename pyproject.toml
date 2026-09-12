@@ -1,0 +1,26 @@
+[project]
+name = "frog-docs"
+version = "0.1.0"
+description = "Multi-project documentation collection portal"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "sphinx>=7.2,<9",
+  "sphinx-book-theme>=1.1,<2",
+  "myst-parser>=3.0,<5",
+  "autodocsumm>=0.2.12",
+  "sphinxemoji>=0.3",
+  "sphinxcontrib-bibtex>=2.6",
+  "sphinx-copybutton>=0.5",
+  "sphinx-design>=0.5",
+  "sphinx-tabs>=3.4",
+  "pyyaml>=6.0",
+  "sphinxcontrib-video>=0.3",
+  "nvidia-sphinx-theme>=0.0.9.post1",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[tool.uv]
+package = false

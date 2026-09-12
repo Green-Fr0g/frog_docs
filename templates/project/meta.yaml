@@ -1,0 +1,13 @@
+id: __PROJECT_ID__
+title: __TITLE__
+summary: Short English summary for the portal card.
+summary_zh: 门户卡片用的中文简介。
+upstream: __UPSTREAM__
+api_mode: collection
+languages:
+  en:
+    root: en
+    label: English
+  zh-CN:
+    root: zh-CN
+    label: 中文

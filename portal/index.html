@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>frog_docs — 文档收集库</title>
+    <meta
+      name="description"
+      content="多项目文档收集库：原版与中文文档统一入口。"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script>
+      /* Apply the saved/system theme before paint to avoid a flash. */
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem("frog-docs-theme");
+        } catch (err) {
+          theme = null;
+        }
+        if (theme !== "light" && theme !== "dark") {
+          theme =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true">fd</span>
+          <span class="brand-text">
+            <strong>frog_docs</strong>
+            <span class="brand-sub" data-i18n="brand_sub"
+              >文档收集库</span
+            >
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="segmented" aria-label="Language">
+            <button type="button" class="lang-btn is-active" data-ui-lang="zh">
+              中文
+            </button>
+            <button type="button" class="lang-btn" data-ui-lang="en">EN</button>
+          </nav>
+          <button
+            id="theme-toggle"
+            class="icon-btn"
+            type="button"
+            aria-label="切换主题"
+            data-i18n-aria="theme_toggle"
+            title="切换主题"
+          >
+            <svg
+              class="icon icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4.2" />
+              <path
+                d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"
+              />
+            </svg>
+            <svg
+              class="icon icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">Documentation Collection</p>
+        <h1>frog_docs</h1>
+        <p class="tagline">
+          收集并托管各项目的原版文档与中文译文，一站浏览。
+        </p>
+      </section>
+
+      <section class="toolbar">
+        <label class="search">
+          <span class="visually-hidden" data-i18n="search_label">搜索项目</span>
+          <svg
+            class="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.9"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="6.4" />
+            <path d="m16 16 4.2 4.2" />
+          </svg>
+          <input
+            id="project-search"
+            type="search"
+            placeholder="搜索项目名称或简介…"
+            autocomplete="off"
+          />
+        </label>
+        <p id="project-count" class="muted"></p>
+      </section>
+
+      <section id="project-grid" class="project-grid" aria-live="polite"></section>
+
+      <p id="empty-state" class="empty-state hidden">
+        没有匹配的项目。
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p data-i18n="footer">
+          API 参考页在收集库模式下可能不完整；完整 API 请查看各项目上游仓库。
+        </p>
+      </div>
+    </footer>
+
+    <script src="./assets/app.js" defer></script>
+  </body>
+</html>
