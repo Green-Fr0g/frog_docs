@@ -120,7 +120,9 @@ a {
 }
 
 .container {
-  width: min(1120px, calc(100% - 2.5rem));
+  /* Widened from 1120px: the old cap left the cards looking small on wide
+     screens. Keep below 1338px or the grid fits a third column. */
+  width: min(1280px, calc(100% - 2.5rem));
   margin: 0 auto;
 }
 
@@ -157,7 +159,7 @@ a {
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, var(--primary), var(--accent-bright));
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -169,13 +171,13 @@ a {
 }
 
 .brand-text strong {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   letter-spacing: -0.01em;
 }
 
 .brand-sub {
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
 }
 
 .header-actions {
@@ -200,7 +202,7 @@ a {
   background: transparent;
   color: var(--text-muted);
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
@@ -248,13 +250,13 @@ html[data-theme="dark"] .icon-moon {
 
 .hero {
   padding: 3rem 0 1.5rem;
-  max-width: 46rem;
+  max-width: 50rem;
 }
 
 .eyebrow {
   margin: 0 0 0.6rem;
   color: var(--accent);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -262,7 +264,7 @@ html[data-theme="dark"] .icon-moon {
 
 h1 {
   margin: 0;
-  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   color: var(--text);
@@ -271,8 +273,8 @@ h1 {
 .tagline {
   margin: 0.9rem 0 0;
   color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.7;
+  font-size: 1.12rem;
+  line-height: 1.75;
 }
 
 .toolbar {
@@ -310,7 +312,7 @@ h1 {
   background: var(--surface);
   color: var(--text);
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -329,7 +331,7 @@ h1 {
 .muted {
   color: var(--text-muted);
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .project-grid {
@@ -337,16 +339,16 @@ h1 {
   /* Two roomy columns on desktop so the four projects form a clean 2x2,
      collapsing to one column on narrow viewports. */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
-  gap: 1.25rem;
+  gap: 1.5rem;
   padding-bottom: 3rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  min-height: 200px;
-  padding: 1.5rem;
+  gap: 1rem;
+  min-height: 240px;
+  padding: 1.75rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
@@ -368,9 +370,9 @@ h1 {
   gap: 0.75rem;
 }
 
-.card h2 {3
+.card h2 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   font-weight: 650;
   letter-spacing: -0.015em;
 }
@@ -382,14 +384,14 @@ h1 {
   background: var(--accent-soft);
   color: var(--accent);
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
 }
 
 .card p {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.94rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
   flex: 1;
 }
 
@@ -410,7 +412,7 @@ h1 {
   padding: 0.45rem 0.85rem;
   border: 1px solid transparent;
   font: inherit;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease,
@@ -453,9 +455,9 @@ h1 {
 .site-footer {
   border-top: 1px solid var(--border);
   background: var(--bg-soft);
-  padding: 1.4rem 0 2.2rem;
+  padding: 1.6rem 0 2.4rem;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
 }
 
 .site-footer p {
