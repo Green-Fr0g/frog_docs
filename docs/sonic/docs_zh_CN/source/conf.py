@@ -66,7 +66,17 @@ intersphinx_mapping = {
 }
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    '_build',
+    '_templates',
+    'Thumbs.db',
+    '.DS_Store',
+    # Collection mode: skip the local autodoc API pages and link to the
+    # upstream docs instead. This repo vendors no Python sources, so the
+    # generated API pages would be empty (same policy as mjlab).
+    'api',
+    'api/*',
+]
 
 # List of zero or more Sphinx-specific warning categories to be squelched
 suppress_warnings = [

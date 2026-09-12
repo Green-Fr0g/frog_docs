@@ -55,8 +55,9 @@ site/                   # 构建产物（不入库）
 | 项目 | 本地 API 页 | 说明 |
 |------|-------------|------|
 | mjlab | 跳过 | `conf.py` 的 `exclude_patterns` 排除 `source/api`，API 参考链接到[上游文档](https://mujocolab.github.io/mjlab/source/api/index.html) |
-| sonic | 发布 | 上游仅少量 API 页，可直接构建 |
+| sonic | 跳过 | `conf.py` 的 `exclude_patterns` 排除 `api` |
 | isaaclab | 跳过 | 上游 `autosummary_generate = True` 会在 `builder-inited` 阶段 `import isaaclab`，无源码时直接中止构建；故 `exclude_patterns` 排除 `source/api`，API 参考见[上游文档](https://isaaclab.sh/docs/) |
+| protomotions | 跳过 | `conf.py` 的 `exclude_patterns` 排除 `api_reference`（上游本可借 `autodoc_mock_imports` 构建，收集库统一不发布本地 API） |
 
 需要切换策略时，改对应 `conf.py` 的 `exclude_patterns` 即可，源文件无需删除。
 
@@ -71,7 +72,8 @@ site/                   # 构建产物（不入库）
 | isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | `exclude_patterns` 排除 `source/api` | 见上方 API 策略；`autosummary` 无法导入不存在的 `isaaclab` 包 |
 | isaaclab | `docs_zh_CN/conf.py` | `language = "en"` → `"zh_CN"` | 否则中文站导出英文搜索索引 |
 | protomotions | `docs_zh_CN/source/conf.py` | `language = "en"` → `"zh_CN"` | 同上 |
-| sonic、isaaclab、protomotions | 各自 `conf.py` 的 `html_js_files`；新增 `_static/js/color_mode_cycle.js`；sonic/isaaclab 另在 `custom.css` 隐藏下拉菜单 | 主题按钮由「下拉选择」改为「点击循环」：light → dark → auto | 统一全站交互，与 mjlab 保持一致（mjlab 上游自带该定制，此处把同一脚本复制到其余三个项目） |
+| sonic、protomotions | `conf.py` 的 `exclude_patterns` 与 `suppress_warnings` | 排除 `api` / `api_reference`，并抑制 `ref.doc` 警告 | 统一为「不发布本地 API」策略，与 mjlab、isaaclab 一致 |
+| sonic、isaaclab、protomotions | 各自 `conf.py` 的 `html_js_files`；新增 `_static/js/color_mode_cycle.js`；三者均在 `custom.css` 隐藏下拉菜单 | 主题按钮由「下拉选择」改为「点击循环」：light → dark → auto | 统一全站交互，与 mjlab 保持一致（mjlab 上游自带该定制，此处把同一脚本复制到其余三个项目） |
 
 ## 添加新项目
 

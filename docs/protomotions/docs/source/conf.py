@@ -230,7 +230,13 @@ autodoc_mock_imports = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = [
+    # Collection mode: skip the local autodoc API pages and link to the
+    # upstream docs instead. This repo vendors no Python sources, so the
+    # generated API pages would be empty (same policy as mjlab).
+    'api_reference',
+    'api_reference/*',
+]
 
 # Exclude modules that execute code at module level
 autodoc_exclude_modules = [
@@ -247,6 +253,7 @@ suppress_warnings = [
     "toc.excluded",  # Suppress warnings about excluded documents
     "autodoc",  # Suppress autodoc warnings for mocked objects
     "autodoc.import_object",  # Suppress import warnings
+    "ref.doc",  # Refs to api_reference, which collection mode excludes
 ]
 
 language = "en"
@@ -265,6 +272,7 @@ master_doc = "index"
 
 html_theme = "nvidia_sphinx_theme"
 html_static_path = ["_static"]
+html_css_files = ["css/custom.css"]
 html_js_files = ["js/color_mode_cycle.js"]
 
 # NVIDIA theme options
