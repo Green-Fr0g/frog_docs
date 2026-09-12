@@ -319,8 +319,10 @@ h1 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 1.1rem;
+  /* Two roomy columns on desktop so the four projects form a clean 2x2,
+     collapsing to one column on narrow viewports. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+  gap: 1.25rem;
   padding-bottom: 3rem;
 }
 
@@ -328,8 +330,8 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  min-height: 210px;
-  padding: 1.35rem;
+  min-height: 200px;
+  padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
@@ -351,7 +353,7 @@ h1 {
   gap: 0.75rem;
 }
 
-.card h2 {
+.card h2 {3
   margin: 0;
   font-size: 1.2rem;
   font-weight: 650;
