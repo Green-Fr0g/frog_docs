@@ -71,8 +71,9 @@ site/                   # 构建产物（不入库）
 | isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | 移除 `sphinx_multiversion` 扩展与 `smv_*` 配置，侧栏去掉版本切换器 | 该扩展要求多版本 git 标签，收集库只有一个 `main` 分支 |
 | isaaclab | `docs/conf.py`、`docs_zh_CN/conf.py` | `exclude_patterns` 排除 `source/api` | 见上方 API 策略；`autosummary` 无法导入不存在的 `isaaclab` 包 |
 | isaaclab | `docs_zh_CN/conf.py` | `language = "en"` → `"zh_CN"` | 否则中文站导出英文搜索索引 |
+| isaaclab | `scripts/`、`source/`、`docker/`（新增 51 个文件，804 KB） | 从上游补齐 `literalinclude` / `include` 指令所引用的源码文件 | 文档用这些指令把源码直接嵌进页面（共 388 处）；缺失会让 30 个页面的代码块为空，教程章节受影响最重 |
 | protomotions | `docs_zh_CN/source/conf.py` | `language = "en"` → `"zh_CN"` | 同上 |
-| sonic、protomotions | `conf.py` 的 `exclude_patterns` 与 `suppress_warnings` | 排除 `api` / `api_reference`，并抑制 `ref.doc` 警告 | 统一为「不发布本地 API」策略，与 mjlab、isaaclab 一致 |
+| sonic、protomotions | `conf.py` 的 `exclude_patterns` 与 `suppress_warnings` | 排除 `api` / `api_reference`，并抑制 `ref.doc` 警告 | 本地 API 页在无源码条件下渲染为空壳，统一改为「不发布本地 API」，与 mjlab、isaaclab 一致 |
 | sonic、isaaclab、protomotions | 各自 `conf.py` 的 `html_js_files`；新增 `_static/js/color_mode_cycle.js`；三者均在 `custom.css` 隐藏下拉菜单 | 主题按钮由「下拉选择」改为「点击循环」：light → dark → auto | 统一全站交互，与 mjlab 保持一致（mjlab 上游自带该定制，此处把同一脚本复制到其余三个项目） |
 
 ## 添加新项目
